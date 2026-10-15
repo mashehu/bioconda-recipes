@@ -10,17 +10,18 @@ source:
     sha256: 70bdd5aa9fa2636ee4320e1ad73a32746614b880b83e0617f6a0c44d648e6bf0
 
 build:
-  noarch: generic
   number: 0
   run_exports:
     - {{ pin_subpackage('aspera-cli', max_pin="x") }}
 
 requirements:
-  host:
-    - ruby >=3
+  build:
+    - {{ compiler('c') }}
     - make
+  host:
+    - ruby >=3.1
   run:
-    - ruby >=3
+    - ruby >=3.1
 
 test:
   commands:
@@ -36,5 +37,8 @@ about:
   doc_url: "https://www.rubydoc.info/gems/aspera-cli"
 
 extra:
+  additional-platforms:
+    - linux-aarch64
+    - osx-arm64
   recipe-maintainers:
     - farchaab
